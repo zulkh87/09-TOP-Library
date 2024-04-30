@@ -1,6 +1,4 @@
-// Selections from HTML
 let addBookBtn = document.querySelector("#add-new-book");
-// Selections from HTML End
 
 let myLibrary = [];
 
@@ -13,15 +11,18 @@ function Book(title, author, pages, read) {
 };
 // Constructor Function Ends
 
+// checkbox toggle functionality
 Book.prototype.toggleRead = function(){
     this.read = !this.read;
 }
 
+// calls toggleRead, renders the page
 function toggleRead(index){
     myLibrary[index].toggleRead();
     showOnMarkUp();
 }
 
+// adds new book instance to HTML
 function showOnMarkUp(){
     let libraryElement = document.querySelector("#library");
     libraryElement.innerHTML = "";
@@ -45,11 +46,13 @@ function showOnMarkUp(){
     }
 }
 
+// remove book functionality
 function removeBook(index){
     myLibrary.splice(index, 1);
     showOnMarkUp();
 }
 
+// gets relevant values from HTML, initiates a Book instance, renders the page.
 function addBookToLibrary() {
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
@@ -61,11 +64,14 @@ function addBookToLibrary() {
     showOnMarkUp();
 };
 
+// Once clicked, makes form visible.
 addBookBtn.addEventListener("click",function(){
     let formNewBook = document.querySelector("#form-new-book");
     formNewBook.style.display = "block";
 });
 
+// Prevents submit button to connect to database.
+// once clicked, runs function
 document.querySelector("#form-new-book").addEventListener("submit", function(event){
     event.preventDefault();
     addBookToLibrary();
